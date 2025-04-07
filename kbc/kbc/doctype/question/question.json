@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "QUE-.####",
+ "creation": "2025-04-04 12:31:00.215230",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "question_text",
+  "correct_answer",
+  "section_break_twix",
+  "option_1",
+  "column_break_ygjn",
+  "option_2",
+  "column_break_mhjr",
+  "option_3",
+  "column_break_nbyk",
+  "option_4"
+ ],
+ "fields": [
+  {
+   "fieldname": "question_text",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Question"
+  },
+  {
+   "fieldname": "option_1",
+   "fieldtype": "Data",
+   "label": "Option 1"
+  },
+  {
+   "fieldname": "option_2",
+   "fieldtype": "Data",
+   "label": "Option 2"
+  },
+  {
+   "fieldname": "option_3",
+   "fieldtype": "Data",
+   "label": "Option 3"
+  },
+  {
+   "fieldname": "option_4",
+   "fieldtype": "Data",
+   "label": "Option 4"
+  },
+  {
+   "fieldname": "section_break_twix",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ygjn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_mhjr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_nbyk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "correct_answer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Correct Answer"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-04 16:49:34.959128",
+ "modified_by": "Administrator",
+ "module": "Kbc",
+ "name": "Question",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

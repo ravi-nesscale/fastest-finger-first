@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-04 13:23:40.773220",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "player_id",
+  "question_id",
+  "selected_option",
+  "time_taken"
+ ],
+ "fields": [
+  {
+   "fieldname": "player_id",
+   "fieldtype": "Link",
+   "label": "Player ID",
+   "options": "User"
+  },
+  {
+   "fieldname": "question_id",
+   "fieldtype": "Link",
+   "label": "Question Id",
+   "options": "Question"
+  },
+  {
+   "fieldname": "selected_option",
+   "fieldtype": "Data",
+   "label": "Selected Option"
+  },
+  {
+   "fieldname": "time_taken",
+   "fieldtype": "Float",
+   "label": "Time Taken"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-07 14:57:06.356203",
+ "modified_by": "Administrator",
+ "module": "Kbc",
+ "name": "Answer",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
