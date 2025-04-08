@@ -19,7 +19,7 @@
    "label": "Time Spent"
   },
   {
-   "fetch_from": "question_id.correct_answer",
+   "fetch_from": "question_name.correct_answer",
    "fieldname": "correct_answer",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -42,7 +42,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-04-07 16:50:18.116826",
+ "modified": "2025-04-08 13:09:24.980508",
  "modified_by": "Administrator",
  "module": "Kbc",
  "name": "Game Session Question",

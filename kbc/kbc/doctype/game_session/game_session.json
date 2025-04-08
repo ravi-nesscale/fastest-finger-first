@@ -7,16 +7,18 @@
  "engine": "InnoDB",
  "field_order": [
   "column_break_whcadf",
+  "user_id",
+  "column_break_yxlf",
   "user_name",
   "section_break_iyjh",
-  "table_kcvz"
+  "total_questions"
  ],
  "fields": [
   {
+   "fetch_from": "user_id.full_name",
    "fieldname": "user_name",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "User Name",
-   "options": "User",
    "unique": 1
   },
   {
@@ -29,14 +31,26 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "table_kcvz",
+   "fieldname": "total_questions",
    "fieldtype": "Table",
+   "label": "Total Questions",
    "options": "Game Session Question"
+  },
+  {
+   "fieldname": "user_id",
+   "fieldtype": "Link",
+   "label": "User ID",
+   "options": "User",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_yxlf",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-07 15:39:50.517778",
+ "modified": "2025-04-08 12:12:03.475861",
  "modified_by": "Administrator",
  "module": "Kbc",
  "name": "Game Session",

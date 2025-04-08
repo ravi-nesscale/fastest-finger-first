@@ -1,60 +1,63 @@
 <template>
-  <div class="submit-all-container">
+  <div class="text-center mt-6">
     <button
-      @click="submitAllAnswers"
-      class="px-4 py-2 bg-purple-600 text-white font-semibold rounded hover:bg-purple-700"
+      @click="submitAll"
+      class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow"
     >
-      Submit All Answers
+      🚀 Submit All Answers
     </button>
   </div>
 </template>
 
 <script setup>
-import { createResource } from "frappe-ui";
+const submitAll = async () => {
+  const rawAnswers = JSON.parse(localStorage.getItem("submitted_answers") || "[]");
 
-const userName = "Ravi"; // Optional: Use dynamic session later
-
-const submitAllAnswers = async () => {
-  const stored = localStorage.getItem("submitted_answers");
-  if (!stored) {
-    alert("No answers found in localStorage.");
+  if (!rawAnswers.length) {
+    alert("❌ No answers found.");
     return;
   }
 
-  const answers = JSON.parse(stored);
-
-  if (answers.length === 0) {
-    alert("Answer list is empty.");
-    return;
-  }
+  // Only pick needed fields
+  const questions = rawAnswers.map((a) => ({
+    question_name: a.question_name,
+    selected_option: a.selected_option,
+    time_spent: a.time_spent,
+  }));
 
   const payload = {
-    user_name: userName,
-    questions: answers.map((ans) => ({
-      question_name: ans.question_name,
-      selected_option: ans.selected_option,
-      correct_answer: ans.correct_answer,
-      time_spent: ans.time_spent,
-    })),
+    user_id: frappe.session.user, // Email of the user
+    questions, // Filtered list of questions
   };
 
   try {
-    await createResource({
-      doctype: "Game Session",
-      values: payload,
-    }).submit();
+    const res = await fetch(
+      "/api/method/kbc.kbc.api.game_session.submit_game_session",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: JSON.stringify(payload) }),
+      }
+    );
 
-    alert("All answers submitted to Game Session successfully!");
-    localStorage.removeItem("submitted_answers");
-  } catch (error) {
-    console.error("Error submitting answers:", error);
-    alert("Submission failed. Check console for details.");
+    const result = await res.json();
+
+    if (result.message?.status === "success") {
+      alert("✅ Answers submitted!");
+      localStorage.removeItem("submitted_answers");
+    } else {
+      alert("❌ Error: " + (result.message?.message || "Unknown error"));
+    }
+  } catch (err) {
+    console.error("❌ Submission failed", err);
+    alert("Something went wrong.");
   }
 };
 </script>
 
 <style scoped>
-.submit-all-container {
-  margin-top: 20px;
+button {
+  font-weight: bold;
+  font-size: 16px;
 }
 </style>
