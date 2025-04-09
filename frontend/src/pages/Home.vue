@@ -30,6 +30,7 @@
   </div>
 </template>
 
+
 <script setup>
 import { ref } from "vue";
 import Navbar from "../components/Navbar.vue";
@@ -97,7 +98,7 @@ const submitAnswer = async () => {
 
   const answerData = {
     question_name: currentQuestion.value.name,
-    selected_option: currentOptions.value[selectedOption.value],
+    select_option: currentOptions.value[selectedOption.value],
     time_spent: exactTime,
   };
 

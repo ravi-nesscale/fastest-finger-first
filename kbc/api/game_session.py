@@ -29,7 +29,7 @@ def save_single_answer(data=None):
         exists = False
         for q in doc.total_questions:
             if q.question_name == answer["question_name"]:
-                q.selected_option = answer["selected_option"]
+                q.select_option = answer["select_option"]
                 q.time_spent = answer["time_spent"]
                 exists = True
                 break
@@ -37,7 +37,7 @@ def save_single_answer(data=None):
         if not exists:
             doc.append("total_questions", {
                 "question_name": answer["question_name"],
-                "selected_option": answer["selected_option"],
+                "select_option": answer["select_option"],
                 "time_spent": answer["time_spent"]
             })
 
