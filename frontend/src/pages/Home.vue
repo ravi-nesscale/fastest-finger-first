@@ -27,30 +27,15 @@
       Time Spent: {{ submittedTime }}
     </div>
 
-    <button
-      @click="viewStoredAnswers"
-      class="mt-4 mr-1 px-4 py-2 bg-blue-500 text-white rounded"
-    >
-      View Stored Answers
-    </button>
-
-    <!-- 🔥 Removed Submit All Answers button here -->
-    
-    <!-- Custom Components -->
-    <ClearDataInLocal />
-    <AllDataSubmit/>
-</div>
+  </div>
 </template>
-
 
 <script setup>
 import { ref } from "vue";
 import Navbar from "../components/Navbar.vue";
 import QuestionCard from "../components/QuestionDisplay.vue";
 import Timer from "../components/Timer.vue";
-import { createListResource, createResource } from "frappe-ui";
-import ClearDataInLocal from "../components/ClearDataInLocal.vue";
-import AllDataSubmit from "../components/AllDataSubmit.vue";
+import { createListResource } from "frappe-ui";
 
 const timerRef = ref(null);
 
@@ -60,11 +45,8 @@ const selectedOption = ref(null);
 const currentQuestion = ref({});
 const currentOptions = ref([]);
 const submittedTime = ref("");
-// const showSubmitAllButton = ref(false); // 🔥 Track visibility
 
-const userName = "ravi kumar"; // Optional: make dynamic with login or input
-
-// Load Questions
+// Load questions from Question doctype
 const questionResource = createListResource({
   doctype: "Question",
   fields: [
@@ -83,10 +65,12 @@ const questionResource = createListResource({
   },
 });
 
+// Change active question
 const selectQuestion = (index) => {
   activeIndex.value = index;
   selectedOption.value = null;
-  const question = questions.value[index] || {};
+
+  const question = questions.value[index];
   currentQuestion.value = question;
 
   currentOptions.value = [
@@ -100,87 +84,54 @@ const selectQuestion = (index) => {
   timerRef.value?.startTimer();
 };
 
+// Option selected
 const selectOption = (index) => {
   selectedOption.value = index;
 };
 
-const submitAnswer = () => {
+// Submit single question
+const submitAnswer = async () => {
   timerRef.value?.pauseTimer();
   const exactTime = timerRef.value?.getFormattedTime();
   submittedTime.value = exactTime;
 
-  const question = currentQuestion.value;
   const answerData = {
-    question_name: question.name,
+    question_name: currentQuestion.value.name,
     selected_option: currentOptions.value[selectedOption.value],
-    correct_answer: question.correct_answer,
     time_spent: exactTime,
-    user_name: userName,
-  };
-
-  let existingData = JSON.parse(localStorage.getItem("submitted_answers") || "[]");
-
-  const index = existingData.findIndex((ans) => ans.question_name === question.name);
-  if (index >= 0) {
-    existingData[index] = answerData;
-  } else {
-    existingData.push(answerData);
-  }
-
-  localStorage.setItem("submitted_answers", JSON.stringify(existingData));
-
-  alert(`You selected: ${answerData.selected_option}\nTime: ${exactTime}`);
-
-  // Go to next question
-  if (activeIndex.value < questions.value.length - 1) {
-    selectQuestion(activeIndex.value + 1);
-  }
-
-  // ✅ Show final submit button only after all questions answered
-  // if (existingData.length === questions.value.length) {
-  //   showSubmitAllButton.value = true;
-  // }
-};
-
-const viewStoredAnswers = () => {
-  const data = JSON.parse(localStorage.getItem("submitted_answers") || "[]");
-  console.log("Stored Answers:", data);
-  alert(JSON.stringify(data, null, 2));
-};
-
-const submitAllAnswersToGameSession = async () => {
-  const answers = JSON.parse(localStorage.getItem("submitted_answers") || "[]");
-
-  if (answers.length === 0) {
-    alert("No answers to submit.");
-    return;
-  }
-
-  const payload = {
-    user_name: userName,
-    questions: answers.map((ans) => ({
-      question_name: ans.question_name,
-      selected_option: ans.selected_option,
-      correct_answer: ans.correct_answer,
-      time_spent: ans.time_spent,
-    })),
   };
 
   try {
-    const response = await createResource({
-      doctype: "Game Session",
-      values: payload,
-    }).submit();
+    const response = await fetch("/api/method/kbc.api.game_session.save_single_answer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        data: JSON.stringify({
+          answer: answerData
+        })
+      })
+    });
 
-    alert("Answers submitted to Game Session!");
-    localStorage.removeItem("submitted_answers");
-    showSubmitAllButton.value = false;
+    const result = await response.json();
+    console.log("API Response:", result);
+    if (result.message?.status === "success") {
+      alert("✅ Answer submitted!");
+      if (activeIndex.value < questions.value.length - 1) {
+        selectQuestion(activeIndex.value + 1);
+      }
+    } else {
+      alert("❌ Failed to submit answer: " + (result.message || "Unknown error"));
+    }
   } catch (err) {
-    console.error("Submission error:", err);
-    alert("Failed to submit answers.");
+    console.error("❌ Error submitting answer:", err);
+    alert("❌ Failed to submit answer.");
   }
 };
 </script>
+
+
 
 <style scoped>
 .container {
