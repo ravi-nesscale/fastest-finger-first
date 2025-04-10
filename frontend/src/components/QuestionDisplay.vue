@@ -28,55 +28,55 @@ defineProps({
 
 defineEmits(["select-option"]);
 </script>
-
 <style scoped>
 .question-card {
-  background: #f8f9fa;
-  color: #495057;
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 1.25rem;
-  margin-bottom: 20px;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+  color: gold;
+  padding: 24px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  border: 2px solid gold;
 }
 
 .options-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  align-items: flex-start;
-  padding-left: 20px;
+  gap: 15px;
+  align-items: center;
 }
 
 .option-item {
-  background: #ffffff;
-  padding: 12px 15px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
+  background: #1a1a1a;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 25px;
   font-size: 1.2rem;
-  font-weight: 400;
-  width: 100%;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
+  font-weight: 500;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: inset 0 0 0 2px gold;
+  transition: all 0.3s ease;
   cursor: pointer;
-  border: 1px solid #dcdcdc;
 }
 
 .option-item:hover {
-  background: #f1f1f1;
+  background: #292929;
 }
 
 .selected {
-  background: #e9ecef;
-  color: #3e4953;
-  transform: scale(1.05);
+  background: #fbc02d;
+  color: #000;
+  transform: scale(1.03);
+  box-shadow: 0 0 15px gold;
 }
 
 .option-number {
   font-weight: bold;
-  font-size: 1.2rem;
-  color: #007bff;
+  font-size: 1.3rem;
+  color: #03a9f4;
   margin-right: 10px;
 }
 </style>

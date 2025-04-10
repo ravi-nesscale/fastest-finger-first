@@ -20,20 +20,44 @@
           </tr>
         </tbody>
       </table>
+      <h1 class="text-center text-3xl font-bold mt-3 text-yellow-400 hover:text-yellow-300 transition duration-300">
+    <router-link to="/Gamesession">HOME </router-link>
+  </h1>
     </div>
   </div>
+  
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import { call } from 'frappe-ui';
+import { ref } from 'vue';
 
-const leaderboardData = ref([]);
-
-onMounted(async () => {
-  const res = await call('kbc.kbc.api.game_session.get_leaderboard');
-  leaderboardData.value = res.message || [];
-});
+const leaderboardData = ref([
+  {
+    user_id: 'ravisoni788@gmail.com',
+    user_name: 'Ravi Kumar',
+    total_score: 120000,
+  },
+  {
+    user_id: 'neha.sharma@example.com',
+    user_name: 'Neha Sharma',
+    total_score: 100000,
+  },
+  {
+    user_id: 'arjun.mehra@example.com',
+    user_name: 'Arjun Mehra',
+    total_score: 80000,
+  },
+  {
+    user_id: 'priya.raj@example.com',
+    user_name: 'Priya Raj',
+    total_score: 64000,
+  },
+  {
+    user_id: 'aman.verma@example.com',
+    user_name: 'Aman Verma',
+    total_score: 32000,
+  },
+]);
 </script>
 
 <style scoped>

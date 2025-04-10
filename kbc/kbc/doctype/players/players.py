@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Answer(Document):
+class Players(Document):
 	pass

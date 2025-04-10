@@ -26,44 +26,46 @@ defineEmits(["select-question"]);
   display: flex;
   justify-content: center;
   gap: 10px;
-  background: #92a9c1;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  background: linear-gradient(to right, #001f3f, #004e92);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 25px;
   overflow-x: auto;
   white-space: nowrap;
-  padding-bottom: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .navbar::-webkit-scrollbar {
   height: 6px;
 }
 .navbar::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 3px;
+  background: #666;
+  border-radius: 4px;
 }
 
 .nav-button {
-  background: #ffffff;
-  border: 1px solid #dee2e6;
-  padding: 8px 14px;
+  background: #fff;
+  border: 2px solid #ccc;
+  padding: 10px 16px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: bold;
   cursor: pointer;
-  border-radius: 6px;
-  transition: background 0.2s, color 0.2s;
-  color: #333;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  color: #222;
+  min-width: 42px;
 }
 
 .nav-button:hover {
-  background: #92a9c1;
+  background-color: #f8c93c;
+  color: #000;
+  border-color: #f1b800;
 }
 
 .active {
-  background: #495057;
-  color: #ffffff;
-  border-color: #495057;
+  background: #f8c93c;
+  color: #000;
+  border-color: #e0a800;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
 }
 </style>
-

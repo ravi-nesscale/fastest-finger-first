@@ -7,24 +7,31 @@
  "engine": "InnoDB",
  "field_order": [
   "player",
+  "player__name",
   "total_score"
  ],
  "fields": [
   {
    "fieldname": "player",
    "fieldtype": "Link",
-   "label": "Player ",
-   "options": "Game Session Question"
+   "label": "Player ID",
+   "options": "Game Session"
   },
   {
    "fieldname": "total_score",
    "fieldtype": "Int",
    "label": "Total Score"
+  },
+  {
+   "fetch_from": "player.user_name",
+   "fieldname": "player__name",
+   "fieldtype": "Data",
+   "label": "Player  Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-07 15:29:32.373836",
+ "modified": "2025-04-10 11:09:32.348047",
  "modified_by": "Administrator",
  "module": "Kbc",
  "name": "KBC Leaderboard",

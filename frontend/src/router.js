@@ -13,6 +13,16 @@ const routes = [
     path: '/account/login',
     component: () => import('@/pages/Login.vue'),
   },
+  {
+    path: '/Leaderboard',
+    name: 'Leaderboard',
+    component: () => import('@/pages/Leaderboard.vue'),
+  },
+  {
+    path: '/Gamesession',
+    name: 'Gamesession',
+    component: () => import('@/pages/Gamesession.vue'),
+  },
 ]
 
 let router = createRouter({

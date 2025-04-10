@@ -1,45 +1,43 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:email",
  "creation": "2025-04-04 13:23:40.773220",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "player_id",
-  "question_id",
-  "selected_option",
-  "time_taken"
+  "email",
+  "player_name",
+  "password"
  ],
  "fields": [
   {
-   "fieldname": "player_id",
-   "fieldtype": "Link",
-   "label": "Player ID",
-   "options": "User"
-  },
-  {
-   "fieldname": "question_id",
-   "fieldtype": "Link",
-   "label": "Question Id",
-   "options": "Question"
-  },
-  {
-   "fieldname": "selected_option",
+   "fieldname": "player_name",
    "fieldtype": "Data",
-   "label": "Selected Option"
+   "in_list_view": 1,
+   "label": "Player Name",
+   "unique": 1
   },
   {
-   "fieldname": "time_taken",
-   "fieldtype": "Float",
-   "label": "Time Taken"
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "unique": 1
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Data",
+   "label": "Password"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-07 14:57:06.356203",
+ "modified": "2025-04-10 15:01:37.401914",
  "modified_by": "Administrator",
  "module": "Kbc",
- "name": "Answer",
+ "name": "Players",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

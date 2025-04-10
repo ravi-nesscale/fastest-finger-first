@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:user_name",
+ "autoname": "field:user_id",
  "creation": "2025-04-04 12:51:03.787485",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -10,6 +10,8 @@
   "user_id",
   "column_break_yxlf",
   "user_name",
+  "column_break_fomn",
+  "total_points",
   "section_break_iyjh",
   "total_questions"
  ],
@@ -18,8 +20,8 @@
    "fetch_from": "user_id.full_name",
    "fieldname": "user_name",
    "fieldtype": "Data",
-   "label": "User Name",
-   "unique": 1
+   "in_list_view": 1,
+   "label": "User Name"
   },
   {
    "fieldname": "column_break_whcadf",
@@ -46,11 +48,21 @@
   {
    "fieldname": "column_break_yxlf",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_fomn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_points",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Points"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-09 14:47:27.521227",
+ "modified": "2025-04-10 11:12:19.437806",
  "modified_by": "Administrator",
  "module": "Kbc",
  "name": "Game Session",
@@ -72,6 +84,5 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "title_field": "user_name"
+ "states": []
 }
