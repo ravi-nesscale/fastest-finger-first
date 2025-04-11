@@ -1,51 +1,52 @@
+# kbc/api/game_session.py
+
 import frappe
 import json
 
 @frappe.whitelist(allow_guest=True)
-def save_single_answer(data=None):
+def save_single_answer(data):
     try:
         if isinstance(data, str):
             data = json.loads(data)
 
-        answer = data.get("answer")
-        if not answer:
-            return {"status": "error", "message": "No answer provided"}
+        user_id = data.get("user_id")
+        user_name = data.get("user_name")
+        question_name = data.get("question_name")
+        select_option = data.get("select_option")  # not select_option
+        time_spent = data.get("time_spent")
 
-        # Fixed user details
-        user_id = "admin@example.com"
-        user_name = "Administrator"
+        if not all([user_id, question_name, select_option]):
+            return {"message": "Missing required fields"}
 
-        # Get or create Game Session
-        session = frappe.get_all("Game Session", filters={"user_id": user_id}, limit=1)
+        session = frappe.get_all("Game Session", filters={"user_id": user_id}, fields=["name"])
         if session:
-            doc = frappe.get_doc("Game Session", session[0].name)
+            doc = frappe.get_doc("Game Session", session[0]["name"])
         else:
             doc = frappe.new_doc("Game Session")
             doc.user_id = user_id
             doc.user_name = user_name
-            doc.insert(ignore_permissions=True)
 
-        # Update or append child entry
-        exists = False
-        for q in doc.total_questions:
-            if q.question_name == answer["question_name"]:
-                q.select_option = answer["select_option"]
-                q.time_spent = answer["time_spent"]
-                exists = True
+        # Update or add question entry
+        updated = False
+        for row in doc.total_questions:
+            if row.question_name == question_name:
+                row.select_option = select_option
+                row.time_spent = time_spent
+                updated = True
                 break
 
-        if not exists:
+        if not updated:
             doc.append("total_questions", {
-                "question_name": answer["question_name"],
-                "select_option": answer["select_option"],
-                "time_spent": answer["time_spent"]
+                "question_name": question_name,
+                "select_option": select_option,
+                "time_spent": time_spent,
             })
 
         doc.save(ignore_permissions=True)
         frappe.db.commit()
 
-        return {"status": "success"}
+        return {"message": "success"}
 
     except Exception as e:
-        frappe.log_error(title="Game Session Error", message=frappe.get_traceback())
-        return {"status": "error", "message": str(e)}
+        frappe.log_error(frappe.get_traceback(), "save_single_answer Error")
+        return {"message": f"Error: {str(e)}"}

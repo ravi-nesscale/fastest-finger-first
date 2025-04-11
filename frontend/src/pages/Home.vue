@@ -16,12 +16,14 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import axios from 'axios'
 
 const player_name = ref('')
 const email = ref('')
 const password = ref('')
 const message = ref('')
+const router = useRouter()
 
 const submitPlayer = async () => {
   try {
@@ -35,9 +37,13 @@ const submitPlayer = async () => {
 
     if (res.data.message) {
       message.value = res.data.message
-      player_name.value = ''
-      email.value = ''
-      password.value = ''
+
+      // Store user session in localStorage
+      localStorage.setItem('user_id', email.value)
+      localStorage.setItem('user_name', player_name.value)
+
+      // Redirect to game page
+      router.push('/Welcomebutton')
     } else {
       message.value = '❌ Failed to create player'
     }
@@ -49,6 +55,7 @@ const submitPlayer = async () => {
 </script>
 
 <style scoped>
+/* same styles as before */
 .register-wrapper {
   min-height: 100vh;
   background: linear-gradient(135deg, #1f1c2c, #928dab);

@@ -23,6 +23,11 @@ const routes = [
     name: 'Gamesession',
     component: () => import('@/pages/Gamesession.vue'),
   },
+  {
+    path: '/Welcomebutton',
+    name: 'Welcomebutton',
+    component: () => import('@/pages/Welcomebutton.vue'),
+  },
 ]
 
 let router = createRouter({

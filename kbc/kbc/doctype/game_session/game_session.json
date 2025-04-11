@@ -17,7 +17,7 @@
  ],
  "fields": [
   {
-   "fetch_from": "user_id.full_name",
+   "fetch_from": "user_id.player_name",
    "fieldname": "user_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -42,7 +42,7 @@
    "fieldname": "user_id",
    "fieldtype": "Link",
    "label": "User ID",
-   "options": "User",
+   "options": "Players",
    "unique": 1
   },
   {
@@ -62,7 +62,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-10 11:12:19.437806",
+ "modified": "2025-04-10 17:22:21.273012",
  "modified_by": "Administrator",
  "module": "Kbc",
  "name": "Game Session",

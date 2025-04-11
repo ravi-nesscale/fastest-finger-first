@@ -32,7 +32,7 @@ defineEmits(["select-option"]);
 .question-card {
   background: rgba(0, 0, 0, 0.3);
   color: gold;
-  padding: 24px;
+  padding: 25px;
   border-radius: 12px;
   font-size: 1.5rem;
   font-weight: bold;
@@ -56,7 +56,7 @@ defineEmits(["select-option"]);
   font-size: 1.2rem;
   font-weight: 500;
   width: 90%;
-  max-width: 500px;
+  max-width: 600px;
   box-shadow: inset 0 0 0 2px gold;
   transition: all 0.3s ease;
   cursor: pointer;

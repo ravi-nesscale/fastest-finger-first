@@ -21,3 +21,32 @@ class GameSession(Document):
             total += question.question_point
 
         self.total_points = total
+
+
+    def on_update(self):
+        self.sync_with_leaderboard()
+
+    def sync_with_leaderboard(self):
+        if not (self.user_id and self.user_name and self.total_points is not None):
+            return  # Do nothing if required fields are missing
+
+        leaderboard = frappe.get_all(
+            "KBC Leaderboard",
+            filters={"player_id": self.user_id},
+            limit=1
+        )
+
+        if leaderboard:
+            # Update existing leaderboard record
+            lb_doc = frappe.get_doc("KBC Leaderboard", leaderboard[0].name)
+            lb_doc.player_name = self.user_name
+            lb_doc.total_points = self.total_points
+            lb_doc.save()
+        else:
+            # Create new leaderboard record
+            frappe.get_doc({
+                "doctype": "KBC Leaderboard",
+                "player_id": self.user_id,
+                "player_name": self.user_name,
+                "total_points": self.total_points
+            }).insert()

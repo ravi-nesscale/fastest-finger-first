@@ -1,41 +1,45 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "KBC-Leaderboard-.###",
+ "autoname": "field:player_id",
  "creation": "2025-04-04 14:30:00.565115",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "player",
-  "player__name",
-  "total_score"
+  "player_id",
+  "player_name",
+  "total_points"
  ],
  "fields": [
   {
-   "fieldname": "player",
+   "fieldname": "player_id",
    "fieldtype": "Link",
    "label": "Player ID",
-   "options": "Game Session"
+   "options": "Game Session",
+   "unique": 1
   },
   {
-   "fieldname": "total_score",
+   "fetch_from": "player_id.total_points",
+   "fieldname": "total_points",
    "fieldtype": "Int",
-   "label": "Total Score"
+   "in_list_view": 1,
+   "label": "Total Points"
   },
   {
-   "fetch_from": "player.user_name",
-   "fieldname": "player__name",
+   "fetch_from": "player_id.user_name",
+   "fieldname": "player_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Player  Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-10 11:09:32.348047",
+ "modified": "2025-04-11 11:20:50.728011",
  "modified_by": "Administrator",
  "module": "Kbc",
  "name": "KBC Leaderboard",
- "naming_rule": "Expression (old style)",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
