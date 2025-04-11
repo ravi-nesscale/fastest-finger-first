@@ -25,6 +25,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import Navbar from "../components/Navbar.vue";
 import QuestionCard from "../components/QuestionDisplay.vue";
 import Timer from "../components/Timer.vue";
@@ -32,6 +33,8 @@ import Audioplayer from "../components/Audioplayer.vue";
 import { createListResource } from "frappe-ui";
 
 const timerRef = ref(null);
+const router = useRouter();
+
 const questions = ref([]);
 const activeIndex = ref(0);
 const selectedOption = ref(null);
@@ -105,11 +108,13 @@ const submitAnswer = async () => {
 
         if (result.message === "success" || result.message?.message === "success") {
             alert("✅ Answer submitted successfully");
-            // Go to next question
+
             if (activeIndex.value < questions.value.length - 1) {
                 setTimeout(() => selectQuestion(activeIndex.value + 1), 1000);
             } else {
-                alert("🎉 All questions completed!");
+                setTimeout(() => {
+                    router.push("/Leaderboard"); // ✅ Redirect after last question
+                }, 1000);
             }
         } else {
             const msg = typeof result.message === "object" ? JSON.stringify(result.message) : result.message;
@@ -123,7 +128,6 @@ const submitAnswer = async () => {
 </script>
 
 <style scoped>
-/* Styles same as before */
 .container {
     max-width: 800px;
     margin: auto;

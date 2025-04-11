@@ -1,15 +1,17 @@
 <template>
   <div class="register-wrapper">
     <div class="form-card">
-      <h2 class="form-title">🎮 Register to Play</h2>
+      <h2 class="form-title">🚀 Join the Game Arena</h2>
 
-      <input v-model="player_name" placeholder="Full Name" required />
-      <input v-model="email" type="email" placeholder="Email" required />
-      <input v-model="password" type="password" placeholder="Password" autocomplete="new-password" required />
+      <input v-model="player_name" placeholder="👤 Full Name" required />
+      <input v-model="email" type="email" placeholder="📧 Email Address" required />
+      <input v-model="password" type="password" placeholder="🔒 Password" autocomplete="new-password" required />
 
-      <button @click="submitPlayer">Register</button>
+      <button @click="submitPlayer">✨ Register & Start</button>
 
-      <p class="message">{{ message }}</p>
+      <transition name="fade">
+        <p v-if="message" class="message">{{ message }}</p>
+      </transition>
     </div>
   </div>
 </template>
@@ -37,12 +39,8 @@ const submitPlayer = async () => {
 
     if (res.data.message) {
       message.value = res.data.message
-
-      // Store user session in localStorage
       localStorage.setItem('user_id', email.value)
       localStorage.setItem('user_name', player_name.value)
-
-      // Redirect to game page
       router.push('/Welcomebutton')
     } else {
       message.value = '❌ Failed to create player'
@@ -55,10 +53,9 @@ const submitPlayer = async () => {
 </script>
 
 <style scoped>
-/* same styles as before */
 .register-wrapper {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,55 +63,84 @@ const submitPlayer = async () => {
 }
 
 .form-card {
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  max-width: 400px;
+  background: #f7f9fc;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
   width: 100%;
+  max-width: 420px;
   text-align: center;
+  animation: fadeIn 1s ease-in;
 }
 
 .form-title {
-  margin-bottom: 1.5rem;
-  color: #333;
+  margin-bottom: 1.8rem;
+  font-size: 1.8rem;
+  color: #2c3e50;
+  font-weight: bold;
 }
 
 input {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
+  border: 2px solid #dcdfe6;
+  border-radius: 16px;
   font-size: 1rem;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s ease;
+  background-color: #fff;
 }
 
 input:focus {
-  border-color: #007bff;
+  border-color: #4ca1af;
   outline: none;
-  box-shadow: 0 0 5px #007bff50;
+  box-shadow: 0 0 8px rgba(76, 161, 175, 0.4);
 }
 
 button {
   width: 100%;
-  padding: 12px;
-  background-color: #007bff;
+  padding: 14px;
+  background: linear-gradient(135deg, #4ca1af, #2c3e50);
   color: white;
   font-weight: bold;
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(76, 161, 175, 0.3);
 }
 
 .message {
   margin-top: 1rem;
-  color: #333;
   font-weight: 500;
+  color: #ff5252;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Simple fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
