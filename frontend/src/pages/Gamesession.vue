@@ -26,17 +26,10 @@
   
       <Audioplayer />
   
-      <h1
-        class="text-center text-3xl mt-3 font-bold text-yellow-400 hover:text-yellow-300 transition duration-300"
-      >
-        <!-- <router-link to="/leaderboard">LEADER BOARD</router-link> -->
-      </h1>
-  
       <div v-if="submittedTime" class="mt-4 text-lg font-semibold text-green-400">
         Time Spent: {{ submittedTime }}
       </div>
   
-      <!-- 🔥 Black Screen Transition -->
       <div v-if="showTransition" class="transition-screen">
         <h2 class="transition-text">Get Ready for Next Question!</h2>
       </div>
@@ -62,7 +55,7 @@
   const currentOptions = ref([]);
   const submittedTime = ref("");
   const disabledQuestions = ref([]);
-  const showTransition = ref(false); // 🆕 black screen control
+  const showTransition = ref(false);
   
   const user_id = localStorage.getItem("user_id");
   const user_name = localStorage.getItem("user_name");
@@ -104,7 +97,6 @@
     selectedOption.value = index;
   };
   
-  // 🆕 Next Question with black screen transition
   const goToNextQuestion = () => {
     showTransition.value = true;
     setTimeout(() => {
@@ -175,6 +167,7 @@
     color: #fff;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    overflow-x: hidden;
   }
   
   .title {
@@ -211,7 +204,6 @@
     background: #ffa000;
   }
   
-  /* 🔥 Black Screen Styles */
   .transition-screen {
     position: fixed;
     top: 0;
@@ -230,6 +222,84 @@
     color: #ffc107;
     font-weight: bold;
     text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Mobile Responsive */
+  @media screen and (max-width: 480px) {
+    .container {
+      padding: 20px;
+      margin: 10px;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: none;
+      overflow-x: hidden;
+    }
+  
+    .title {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+  
+    h1, h2, h3, .transition-text {
+      font-size: 1.5rem;
+    }
+  
+    .submit-button {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      z-index: 1000;
+    }
+  
+    .submit-button button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.1rem;
+      border-radius: 25px;
+    }
+  
+    .transition-screen {
+      padding: 20px;
+    }
+  
+    .transition-text {
+      font-size: 1.8rem;
+    }
+  
+    .text-center {
+      font-size: 1.2rem;
+    }
+  
+    .mt-4 {
+      margin-top: 16px;
+    }
+  
+    body, html {
+      overflow-x: hidden;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 30px;
+      margin: 20px;
+      max-width: 100%;
+    }
+  
+    .title {
+      font-size: 2rem;
+    }
+  
+    .submit-button button {
+      padding: 13px;
+      font-size: 1.2rem;
+    }
+  
+    .transition-text {
+      font-size: 2rem;
+    }
   }
   </style>
   
