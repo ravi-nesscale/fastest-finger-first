@@ -5,6 +5,7 @@
       :key="question.name"
       class="nav-button"
       :class="{ active: activeIndex === index }"
+      :disabled="disabledQuestions.includes(index)"
       @click="$emit('select-question', index)"
     >
       {{ index + 1 }}
@@ -16,6 +17,7 @@
 defineProps({
   questions: Array,
   activeIndex: Number,
+  disabledQuestions: Array,
 });
 
 defineEmits(["select-question"]);
@@ -56,10 +58,19 @@ defineEmits(["select-question"]);
   min-width: 42px;
 }
 
-.nav-button:hover {
+.nav-button:hover:not(:disabled) {
   background-color: #f8c93c;
   color: #000;
   border-color: #f1b800;
+}
+
+.nav-button:disabled {
+  background: #999;
+  color: #eee;
+  border-color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
 }
 
 .active {

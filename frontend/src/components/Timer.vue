@@ -1,13 +1,12 @@
 <template>
-    <div class="flex justify-center items-center mt-[10px]">
-      <div class="flex flex-col items-center gap-4 p-4 bg-gray-100 rounded-xl shadow w-72">
-        <div class="text-3xl font-semibold text-blue-500">
-          {{ formattedTime }}
-        </div>
-      </div>
+  <div class="timer">
+    <div class="text-xl font-semibold text-white">
+      {{ formattedTime }}
     </div>
-  </template>
-  
+  </div>
+</template>
+
+
   <script setup>
   import { ref, computed, onMounted, onUnmounted } from 'vue';
   
@@ -87,3 +86,37 @@
 
   </script>
   
+<style scoped>
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a1a1a;
+  border: 1px solid #c6bc61;
+  color: gold;
+  padding: 20px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  /* border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; */
+  width: 100px;
+  height: 45px;
+  margin: 0px auto;
+  box-shadow: 0px 3px 20px rgb(201, 198, 36);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional: add a subtle gradient glow inside */
+/* .timer::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 0;
+} */
+
+
+</style>

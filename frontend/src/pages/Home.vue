@@ -1,23 +1,35 @@
 <template>
-  <div class="register-wrapper">
-    <div class="form-card">
-      <h2 class="form-title">🚀 Join the Game Arena</h2>
+  <div>
+    <!-- Splash Screen -->
+    <div v-if="showSplash" class="splash-wrapper">
+      <img
+        src="https://www.editionscomplexe.com/wp-content/uploads/2022/10/Untitled.png"
+        alt="Splash Image"
+        class="splash-image"
+      />
+    </div>
 
-      <input v-model="player_name" placeholder="👤 Full Name" required />
-      <input v-model="email" type="email" placeholder="📧 Email Address" required />
-      <input v-model="password" type="password" placeholder="🔒 Password" autocomplete="new-password" required />
+    <!-- Register Page -->
+    <div v-else class="register-wrapper">
+      <div class="form-card">
+        <h2 class="form-title">🚀 Join the Game Arena</h2>
 
-      <button @click="submitPlayer">✨ Register & Start</button>
+        <input v-model="player_name" placeholder="👤 Full Name" required />
+        <input v-model="email" type="email" placeholder="📧 Email Address" required />
+        <input v-model="password" type="password" placeholder="🔒 Password" autocomplete="new-password" required />
 
-      <transition name="fade">
-        <p v-if="message" class="message">{{ message }}</p>
-      </transition>
+        <button @click="submitPlayer">✨ Register & Start</button>
+
+        <transition name="fade">
+          <p v-if="message" class="message">{{ message }}</p>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 
@@ -26,6 +38,16 @@ const email = ref('')
 const password = ref('')
 const message = ref('')
 const router = useRouter()
+
+// Splash screen state
+const showSplash = ref(true)
+
+// Automatically hide splash screen after 4-5 seconds
+onMounted(() => {
+  setTimeout(() => {
+    showSplash.value = false
+  }, 4000) // 4000 ms = 4 seconds
+})
 
 const submitPlayer = async () => {
   try {
@@ -53,6 +75,22 @@ const submitPlayer = async () => {
 </script>
 
 <style scoped>
+/* Splash Screen Style */
+.splash-wrapper {
+  min-height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-image {
+  width: 100%;
+  height: auto;
+  animation: fadeIn 4s ease-in-out;
+}
+
+/* Register Page Style */
 .register-wrapper {
   min-height: 100vh;
   background: linear-gradient(135deg, #2c3e50, #4ca1af);
@@ -122,7 +160,6 @@ button:hover {
   animation: fadeIn 0.5s ease;
 }
 
-/* Simple fade-in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
