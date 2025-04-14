@@ -28,6 +28,11 @@ const routes = [
     name: 'Welcomebutton',
     component: () => import('@/pages/Welcomebutton.vue'),
   },
+  {
+    path: '/QuestionManagement',  
+    name: 'QuestionManagement',
+    component: () => import('@/pages/QuestionManagement.vue'),
+  },
 ]
 
 let router = createRouter({

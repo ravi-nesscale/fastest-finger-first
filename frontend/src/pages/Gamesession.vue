@@ -24,7 +24,7 @@
         </button>
       </div>
   
-      <Audioplayer />
+      <!-- <Audioplayer /> -->
   
       <div v-if="submittedTime" class="mt-4 text-lg font-semibold text-green-400">
         Time Spent: {{ submittedTime }}
@@ -158,10 +158,11 @@
   
   <style scoped>
   .container {
-    max-width: 800px;
+    max-width: 100%;
+    height: 800px;
     margin: auto;
     text-align: center;
-    padding: 40px;
+    padding: 10px;
     background: linear-gradient(to bottom right, #000428, #004e92);
     border-radius: 15px;
     color: #fff;
@@ -280,26 +281,62 @@
       overflow-x: hidden;
     }
   }
-  
-  @media screen and (max-width: 768px) {
-    .container {
-      padding: 30px;
-      margin: 20px;
-      max-width: 100%;
-    }
-  
-    .title {
-      font-size: 2rem;
-    }
-  
-    .submit-button button {
-      padding: 13px;
-      font-size: 1.2rem;
-    }
-  
-    .transition-text {
-      font-size: 2rem;
-    }
+  @media screen and (max-width: 360px) {
+  .container {
+    padding: 16px;
+    margin: 8px;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: none;
+    overflow-x: hidden;
   }
+
+  .title {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+
+  h1, h2, h3, .transition-text {
+    font-size: 1.3rem;
+  }
+
+  .submit-button {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    z-index: 1000;
+  }
+
+  .submit-button button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 22px;
+  }
+
+  .transition-screen {
+    padding: 16px;
+  }
+
+  .transition-text {
+    font-size: 1.5rem;
+  }
+
+  .text-center {
+    font-size: 1.1rem;
+  }
+
+  .mt-4 {
+    margin-top: 14px;
+  }
+
+  body, html {
+    overflow-x: hidden;
+  }
+}
+
+ 
   </style>
   
