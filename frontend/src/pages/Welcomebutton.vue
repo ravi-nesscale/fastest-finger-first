@@ -211,4 +211,73 @@ circle {
     filter: drop-shadow(0 0 5px #00f7ff);
   }
 }
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .logo {
+    width: 180px;
+    margin-bottom: 1.5rem;
+  }
+
+  .player-name {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .start-button {
+    padding: 0.8rem 2rem;
+    font-size: 1.3rem;
+    border-radius: 12px;
+  }
+
+  .countdown-circle {
+    width: 160px;
+    height: 160px;
+  }
+
+  .countdown-text {
+    font-size: 2rem;
+  }
+
+  .getting-ready {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 140px;
+  }
+
+  .player-name {
+    font-size: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .start-button {
+    padding: 0.7rem 1.8rem;
+    font-size: 1.1rem;
+  }
+
+  .countdown-circle {
+    width: 140px;
+    height: 140px;
+  }
+
+  .countdown-text {
+    font-size: 1.8rem;
+  }
+
+  .getting-ready {
+    font-size: 1rem;
+  }
+}
+
 </style>

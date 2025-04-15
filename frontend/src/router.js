@@ -33,6 +33,11 @@ const routes = [
     name: 'QuestionManagement',
     component: () => import('@/pages/QuestionManagement.vue'),
   },
+  {
+    path: '/AdminControl',  
+    name: 'AdminControl',
+    component: () => import('@/pages/AdminControl.vue'),
+  },
 ]
 
 let router = createRouter({

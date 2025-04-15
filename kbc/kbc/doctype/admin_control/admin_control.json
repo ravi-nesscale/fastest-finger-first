@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2025-04-14 19:20:16.279342",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "current_question_index",
+  "game_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "current_question_index",
+   "fieldtype": "Int",
+   "label": "Current Question Index"
+  },
+  {
+   "fieldname": "game_status",
+   "fieldtype": "Select",
+   "label": "Game Status",
+   "options": "Active\nPaused\nEnded"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-14 19:25:05.217334",
+ "modified_by": "Administrator",
+ "module": "Kbc",
+ "name": "Admin Control",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
