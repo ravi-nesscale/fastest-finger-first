@@ -111,4 +111,57 @@ defineEmits(["select-option"]);
   align-items: center;
   margin-top: 10px;
 }
+
+/* 📱 Mobile responsiveness */
+@media (max-width: 480px) {
+  .question-card {
+    font-size: 1.2rem;
+    padding: 8px;
+    margin-bottom: 25px;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
+  }
+
+  .option-item {
+    width: 90%;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .option-number {
+    font-size: 1.1rem;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+
+  .timer-slot {
+    grid-column: span 1;
+    margin-top: 8px;
+  }
+}
+
+/* Even tighter for ultra-small 320px screens */
+@media (max-width: 360px) {
+  .question-card {
+    font-size: 1rem;
+    padding: 6px;
+  }
+
+  .option-item {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
+
+  .option-number {
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+  }
+}
 </style>
+
